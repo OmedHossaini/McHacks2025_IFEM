@@ -1,13 +1,22 @@
 // src/components/Home.js
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../contexts/authContext';
 
-const Home = () => (
-  <div>
-    <h1>Welcome to the Dashboard</h1>
-    <Link to="/login">Login</Link>
-    <Link to="/register">Register</Link>
-  </div>
-);
+const Home = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  if (user) {
+    navigate('/dashboard');
+  }
+
+  return (
+    <div>
+      <h1>Welcome to the IFEM Emergency Department</h1>
+      
+    </div>
+  );
+};
 
 export default Home;

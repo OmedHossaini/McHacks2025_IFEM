@@ -1,13 +1,222 @@
-body {
+/* Global Styles */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Container Styles */
+.container {
+  max-width: 1200px;
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading Styles */
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Report List */
+.report-list {
+  margin-top: 20px;
+}
+
+.report-item {
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.report-item h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.report-item p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.report-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.report-actions button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.download-btn {
+  background-color: #4c97ff;
+  color: white;
+}
+
+.download-btn:hover {
+  background-color: #2b73c2;
+  transform: translateY(-2px);
+}
+
+.report-actions button:hover {
+  background-color: #e53e3e;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Button Styling (Dashboard, Triage, and Logout) */
+button {
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  border: none;
+  border-radius: 8px;
+  padding: 15px 25px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  width: auto;
+  display: inline-block;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button.dashboard-btn,
+button.triage-btn,
+button.logout-btn {
+  background-color: #4c97ff;
+  color: white;
+}
+
+button.dashboard-btn:hover,
+button.triage-btn:hover,
+button.logout-btn:hover {
+  background-color: #2b73c2;
+  transform: translateY(-2px);
+}
+
+button.submit-btn {
+  background-color: #28a745;
+  color: white;
+  margin-top: 20px;
+}
+
+button.submit-btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+button.logout-btn {
+  background-color: #e53e3e;
+  color: white;
+}
+
+button.logout-btn:hover {
+  background-color: #c53030;
+  transform: translateY(-2px);
+}
+
+/* Wait message */
+.wait-message {
+  font-size: 1.2rem;
+  color: #ff6347;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+/* Form Input Styling */
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+  border-color: #4c97ff;
+  outline: none;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .report-actions {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  button.submit-btn {
+    margin-top: 20px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .report-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .report-actions {
+    gap: 10px;
+  }
 }

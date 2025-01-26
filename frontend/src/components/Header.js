@@ -1,23 +1,47 @@
-// src/components/Header.js
-import React from 'react';
-import { Link } from 'react-router-dom';
+// src/components/Header.js (updated with triage link)
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../contexts/authContext';
 
-const Header = () => (
-  <header>
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-        <li>
-          <Link to="/register">Register</Link>
-        </li>
-      </ul>
-    </nav>
-  </header>
-);
+const Header = () => {
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
+  return (
+    <header>
+      <nav>
+        <ul>
+          {user ? (
+            <>
+              <li>
+                <button><Link to="/dashboard">Dashboard</Link></button>
+              </li>
+              <li>
+                <button><Link to="/triage">Triage</Link></button>
+              </li>
+              <li>
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/register">Register</Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </nav>
+    </header>
+  );
+};
 
 export default Header;

@@ -2,11 +2,13 @@ const express = require('express');
 const admin = require('firebase-admin');
 const dotenv = require('dotenv');
 
+// Load environment variables
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 
+// Initialize Firebase Admin with environment variables
 admin.initializeApp({
   credential: admin.credential.cert({
     projectId: process.env.FIREBASE_PROJECT_ID,
@@ -17,27 +19,31 @@ admin.initializeApp({
 
 const auth = admin.auth();
 
+// API endpoint for registering a new user
 app.post('/api/register', async (req, res) => {
   const { email, password } = req.body;
   try {
     const userRecord = await auth.createUser({ email, password });
     res.status(201).send({ uid: userRecord.uid });
   } catch (error) {
-    res.status(400).send(error.message);
+    res.status(400).send({ error: error.message });
   }
 });
 
+// API endpoint for user login (simplified)
 app.post('/api/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { email } = req.body;
   try {
     const userRecord = await auth.getUserByEmail(email);
-    // Implement password verification here
     res.status(200).send({ uid: userRecord.uid });
   } catch (error) {
-    res.status(400).send(error.message);
+    res.status(400).send({ error: error.message });
   }
 });
 
-app.listen(5000, () => {
-  console.log('Backend server running on http://localhost:5000');
+// Listen on the dynamic port provided by Render or default to 5000 locally
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Backend server running on port ${PORT}`);
 });

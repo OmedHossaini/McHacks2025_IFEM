@@ -31,10 +31,10 @@ const Header = () => {
           ) : (
             <>
               <li>
-                <Link to="/login">Login</Link>
+                <button><Link to="/login">Login</Link></button>
               </li>
               <li>
-                <Link to="/register">Register</Link>
+                <button><Link to="/register">Register</Link></button>
               </li>
             </>
           )}

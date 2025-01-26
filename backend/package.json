@@ -1,17 +1,17 @@
 {
-  "name": "ed-patient-tracker",
+  "name": "firebase-auth-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "A backend service for Firebase authentication using Express.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["firebase", "auth", "express", "backend"],
+  "author": "Your Name",
   "license": "ISC",
-  "description": "",
   "dependencies": {
+    "dotenv": "^16.0.0",
     "express": "^4.21.2",
-    "mongoose": "^8.9.5",
-    "socket.io": "^4.8.1"
+    "firebase-admin": "^11.10.1"
   }
 }

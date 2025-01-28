@@ -6,8 +6,9 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header';
-import Triage from './components/Triage'; 
-import Doctor from './components/Doctor'; 
+import Triage from './components/Triage';
+import Doctor from './components/Doctor';
+import WaitTimePage from './components/WaitTimePage'; // Import the new component
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/triage" element={<Triage />} />
-          <Route path="/doctor" element={<Doctor />} /> 
+          <Route path="/doctor" element={<Doctor />} />
+          <Route path="/wait-time" element={<WaitTimePage />} /> {/* New route */}
         </Routes>
       </Router>
     </AuthProvider>

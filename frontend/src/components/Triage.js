@@ -7,10 +7,8 @@ const Triage = () => {
   const [breathing, setBreathing] = useState(5);
   const [consciousness, setConsciousness] = useState(5);
   const [heartRate, setHeartRate] = useState(5);
-
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
-  
   const [triageLevel, setTriageLevel] = useState('');
   const [waitMessage, setWaitMessage] = useState('');
   const navigate = useNavigate();
@@ -51,15 +49,14 @@ const Triage = () => {
     reports.push(reportData);
     localStorage.setItem('reports', JSON.stringify(reports));
 
-    if (score <= 15) {
-      navigate('/doctor', { state: { triageLevel: level } });
-    } else {
-      const waitTime = Math.floor(Math.random() * (7 - 3 + 1)) + 3;
-      setWaitMessage(`You will be redirected to the doctor in ${waitTime} seconds.`);
-      setTimeout(() => {
-        navigate('/doctor', { state: { triageLevel: level } });
-      }, waitTime * 1000);
-    }
+    // Calculate wait time (1 to 3 minutes in seconds)
+    const waitTimeSeconds = Math.floor(Math.random() * (3 - 1 + 1)); // Random wait time between 60 and 180 seconds
+    setWaitMessage(`You will be redirected to the doctor in ${waitTimeSeconds} seconds.`);
+
+    // Redirect to the WaitTimePage after the wait time
+    setTimeout(() => {
+      navigate('/wait-time', { state: { waitTime: waitTimeSeconds / 60, triageLevel: level } });
+    }, waitTimeSeconds * 1000);
   };
 
   return (

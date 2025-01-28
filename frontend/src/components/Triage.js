@@ -9,8 +9,6 @@ const Triage = () => {
   const [heartRate, setHeartRate] = useState(5);
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
-  const [triageLevel, setTriageLevel] = useState('');
-  const [waitMessage, setWaitMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -36,8 +34,6 @@ const Triage = () => {
       level = 'Level V: White - Requires non-urgent care';
     }
 
-    setTriageLevel(level);
-
     const reportData = {
       name,
       age,
@@ -50,13 +46,10 @@ const Triage = () => {
     localStorage.setItem('reports', JSON.stringify(reports));
 
     // Calculate wait time (1 to 3 minutes in seconds)
-    const waitTimeSeconds = Math.floor(Math.random() * (3 - 1 + 1)); // Random wait time between 60 and 180 seconds
-    setWaitMessage(`You will be redirected to the doctor in ${waitTimeSeconds} seconds.`);
+    const waitTimeSeconds = Math.floor(Math.random() * (3 - 1 + 1)) + 1; // Random wait time between 1 and 3 minutes
 
-    // Redirect to the WaitTimePage after the wait time
-    setTimeout(() => {
-      navigate('/wait-time', { state: { waitTime: waitTimeSeconds / 60, triageLevel: level } });
-    }, waitTimeSeconds * 1000);
+    // Navigate to WaitTimePage with wait time and triage level
+    navigate('/wait-time', { state: { waitTime: waitTimeSeconds, triageLevel: level } });
   };
 
   return (
@@ -127,15 +120,6 @@ const Triage = () => {
         />
         <button type="submit">Submit</button>
       </form>
-
-      {triageLevel && (
-        <div>
-          <h2>Your Triage Level:</h2>
-          <p>{triageLevel}</p>
-        </div>
-      )}
-
-      {waitMessage && <p>{waitMessage}</p>}
     </div>
   );
 };

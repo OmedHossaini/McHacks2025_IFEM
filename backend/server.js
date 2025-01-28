@@ -1,6 +1,7 @@
 const express = require('express');
 const admin = require('firebase-admin');
 const dotenv = require('dotenv');
+const { OpenAI } = require('openai');
 
 // Load environment variables
 dotenv.config();
@@ -19,25 +20,28 @@ admin.initializeApp({
 
 const auth = admin.auth();
 
-// API endpoint for registering a new user
-app.post('/api/register', async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const userRecord = await auth.createUser({ email, password });
-    res.status(201).send({ uid: userRecord.uid });
-  } catch (error) {
-    res.status(400).send({ error: error.message });
-  }
+// Initialize OpenAI
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
-// API endpoint for user login (simplified)
-app.post('/api/login', async (req, res) => {
-  const { email } = req.body;
+// API endpoint for AI chat
+app.post('/api/chat', async (req, res) => {
+  const { message } = req.body;
+
   try {
-    const userRecord = await auth.getUserByEmail(email);
-    res.status(200).send({ uid: userRecord.uid });
+    const response = await openai.chat.completions.create({
+      model: 'gpt-3.5-turbo',
+      messages: [
+        { role: 'system', content: 'You are a helpful nurse assisting patients in a hospital.' },
+        { role: 'user', content: message },
+      ],
+    });
+
+    res.status(200).json({ response: response.choices[0].message.content });
   } catch (error) {
-    res.status(400).send({ error: error.message });
+    console.error('Error calling OpenAI API:', error);
+    res.status(500).json({ error: 'Unable to process your request.' });
   }
 });
 

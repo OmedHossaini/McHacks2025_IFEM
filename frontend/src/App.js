@@ -8,7 +8,7 @@ import Dashboard from './components/Dashboard';
 import Header from './components/Header';
 import Triage from './components/Triage';
 import Doctor from './components/Doctor';
-import WaitTimePage from './components/WaitTimePage'; // Import the new component
+import WaitTimePage from './components/WaitTimePage';
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/triage" element={<Triage />} />
           <Route path="/doctor" element={<Doctor />} />
-          <Route path="/wait-time" element={<WaitTimePage />} /> {/* New route */}
+          <Route path="/wait-time" element={<WaitTimePage />} />
         </Routes>
       </Router>
     </AuthProvider>

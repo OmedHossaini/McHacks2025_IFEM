@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDEFOkJJ3Fg-Cg6vGHl5OUVS03gIqIoxvM",
-    authDomain: "mchacks2025-ifem.firebaseapp.com",
-    projectId: "mchacks2025-ifem",
-    storageBucket: "mchacks2025-ifem.firebasestorage.app",
-    messagingSenderId: "457339621254",
-    appId: "1:457339621254:web:2af6b2fc70513d6ef1a607",
+    apiKey: "AIzaSyD5_d5AEUiqtmNH8mX87C0LxgC8tNbI-Ew",
+    authDomain: "mchacks2025-ifem-e3c38.firebaseapp.com",
+    projectId: "mchacks2025-ifem-e3c38",
+    storageBucket: "mchacks2025-ifem-e3c38.firebasestorage.app",
+    messagingSenderId: "201801706689",
+    appId: "1:201801706689:web:46a57c85379e6b134e7840",
   };
 
 const app = initializeApp(firebaseConfig);
